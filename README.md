@@ -60,12 +60,33 @@ npm run check:full
 ## Push to GitHub
 
 ```bash
-git remote add origin git@github.com:sopheakdevkh/sopheakkhoeun.git
+git remote add origin git@github-sopheakdevkh:sopheakdevkh/sopheakkhoeun.git
 git branch -M main
 git push -u origin main
 ```
 
 (Skip `remote add` if `origin` already exists.)
+
+## Deploy on Cloudflare (Workers + OpenNext)
+
+This app is **not** a static export (it needs API routes + Prisma). Do **not** use framework preset **Next.js (Static HTML Export)** or output directory `out`.
+
+In Cloudflare Workers / Pages build settings:
+
+| Setting | Value |
+| --- | --- |
+| Framework preset | None (or Workers / OpenNext — **not** Static HTML Export) |
+| Build command | `npx opennextjs-cloudflare build` |
+| Deploy command | `npx wrangler deploy` |
+| Build output directory | leave empty / ignore `out` |
+
+Keep your env vars (`DATABASE_URL`, `DIRECT_URL`, `ADMIN_PASSWORD`, `ADMIN_SECRET`) in Cloudflare secrets.
+
+Local deploy:
+
+```bash
+npm run deploy
+```
 
 ## Useful scripts
 
