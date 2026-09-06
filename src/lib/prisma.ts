@@ -1,16 +1,12 @@
 import { neonConfig } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@/generated/prisma";
+import ws from "ws";
 
-// Node (local/CI) needs the `ws` package; Cloudflare Workers already provide WebSocket.
-if (typeof WebSocket === "undefined") {
-  // Dynamic require keeps the Workers bundle from hard-depending on Node `ws`.
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  neonConfig.webSocketConstructor = require("ws");
-}
+neonConfig.webSocketConstructor = ws;
 
 /** Bump when Prisma models change so HMR does not keep a stale client. */
-const PRISMA_REVISION = 5;
+const PRISMA_REVISION = 6;
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;

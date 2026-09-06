@@ -47,7 +47,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 **Local:** a Husky **pre-push** hook runs `npm run check` automatically. Fix issues before the push goes through.
 
-**CI:** every push/PR to `main` runs lint, typecheck, and `next build` via GitHub Actions (`.github/workflows/ci.yml`). Prefer green CI before deploying (Vercel / your host).
+**CI:** every push/PR to `main` runs lint, typecheck, and `next build` via GitHub Actions (`.github/workflows/ci.yml`). Prefer green CI before deploying to Vercel.
 
 ```bash
 # Before you push
@@ -67,46 +67,26 @@ git push -u origin main
 
 (Skip `remote add` if `origin` already exists.)
 
-## Deploy on Cloudflare Workers (OpenNext)
+## Deploy on Vercel
 
-This app needs a **Worker** runtime (API routes + Prisma). It is **not** a static site.
+1. Import `sopheakdevkh/sopheakkhoeun` in the [Vercel dashboard](https://vercel.com/new).
+2. Framework preset: **Next.js** (default).
+3. Build command: `prisma generate && next build` (or leave Vercel’s default if it runs `npm run build`).
+4. Add environment variables:
 
-### Why your last deploy ignored Wrangler
-
-Cloudflare connected this repo as a **Pages** project. Pages only accepts Wrangler files that include `pages_build_output_dir`, so it skipped `wrangler.jsonc` and published empty/static assets.
-
-**Do not** add `pages_build_output_dir`. That would force a Pages/static deploy.
-
-### Fix in the Cloudflare dashboard
-
-1. Create a new project under **Workers & Pages → Create → Worker** (or **Workers Builds** with Git).
-2. Connect the same GitHub repo (`sopheakdevkh/sopheakkhoeun`).
-3. Disconnect or delete the old **Pages** project that used “Next.js (Static HTML Export)”.
-
-| Setting | Value |
+| Name | Notes |
 | --- | --- |
-| Product | **Workers** (not Pages) |
-| Framework preset | None / OpenNext — **not** “Static HTML Export” |
-| Root directory | `/` (repo root) |
-| Build command | `npx opennextjs-cloudflare build` |
-| Deploy command | `npx wrangler deploy` |
-| Non-production deploy | `npx wrangler versions upload` |
-| Build output directory | *(leave empty — Workers does not use `/out`)* |
+| `DATABASE_URL` | Neon pooled URL |
+| `DIRECT_URL` | Neon direct URL |
+| `ADMIN_PASSWORD` | Admin login |
+| `ADMIN_SECRET` | Cookie signing secret |
 
-### Runtime + build secrets
+5. Deploy. Vercel runs `npm install` → `postinstall` (`prisma generate`) → `npm run build`.
 
-Add these in **Worker → Settings → Variables and Secrets** (runtime) **and** in **Build → Variables and secrets** (so `prisma generate` / build can read them):
-
-- `DATABASE_URL`
-- `DIRECT_URL`
-- `ADMIN_PASSWORD`
-- `ADMIN_SECRET`
-
-### Local deploy
+Local production check:
 
 ```bash
-cp .dev.vars.example .dev.vars
-npm run deploy
+npm run check:full
 ```
 
 ## Useful scripts

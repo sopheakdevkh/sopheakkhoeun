@@ -55,10 +55,10 @@ function BrowserMock() {
 
 function DatabaseVisual() {
   return (
-    <div className="relative mt-auto flex h-[120px] w-full shrink-0 items-center justify-center">
-      <div className="absolute top-6 right-[10%] h-[180px] w-[180px] rotate-2 transition-all duration-300 group-hover:right-[15%] group-hover:bottom-0 group-hover:scale-105 group-hover:-rotate-2">
-        <div className="relative h-full w-full text-white">
-          <div className="absolute -top-4 left-0 h-[50%]">
+    <div className="relative mt-6 flex h-[160px] w-full shrink-0 items-end justify-end pb-1 pr-1 sm:pr-3">
+      <div className="relative h-[148px] w-[148px] origin-bottom-right rotate-2 transition-all duration-300 group-hover:scale-105 group-hover:-rotate-2">
+        <div className="relative h-full w-full text-foreground">
+          <div className="absolute -top-3 left-0 z-10 h-[48%]">
             <svg
               role="img"
               viewBox="0 0 24 24"
@@ -90,7 +90,7 @@ function DatabaseVisual() {
 
           <svg
             viewBox="0 0 256 256"
-            className="h-full w-full"
+            className="h-full w-full text-foreground"
             fill="currentColor"
             aria-hidden
           >
@@ -104,17 +104,17 @@ function DatabaseVisual() {
 
 function ServerUnit() {
   return (
-    <div className="flex h-[38%] w-full">
-      <div className="grid h-full w-[85%] grid-cols-[25%_70%] items-center justify-center rounded-lg border-4 border-white shadow-[0_0_15px_#ffffff50]">
-        <div className="m-auto h-3 w-3 rounded-full bg-slate-600 lg:h-5 lg:w-5" />
-        <div className="flex h-[50%] w-[50%] gap-2 rounded-full">
-          {Array.from({ length: 8 }).map((_, i) => (
+    <div className="flex h-[42%] w-full shrink-0">
+      <div className="grid h-full w-[88%] grid-cols-[25%_70%] items-center justify-center rounded-lg border-[3px] border-foreground shadow-[0_0_12px_color-mix(in_oklab,var(--foreground)_14%,transparent)]">
+        <div className="m-auto h-2.5 w-2.5 rounded-full bg-slate-600 sm:h-3 sm:w-3 lg:h-4 lg:w-4" />
+        <div className="flex h-[50%] w-[55%] gap-1.5 rounded-full sm:gap-2">
+          {Array.from({ length: 6 }).map((_, i) => (
             <div
               key={i}
               className="flex flex-col items-center justify-center space-y-1"
             >
-              <div className="h-1 w-1 rounded-full bg-white/50 lg:h-[6px] lg:w-[6px]" />
-              <div className="h-1 w-1 rounded-full bg-white/50 lg:h-[6px] lg:w-[6px]" />
+              <div className="h-1 w-1 rounded-full bg-foreground/55 sm:h-[5px] sm:w-[5px]" />
+              <div className="h-1 w-1 rounded-full bg-foreground/55 sm:h-[5px] sm:w-[5px]" />
             </div>
           ))}
         </div>
@@ -125,18 +125,18 @@ function ServerUnit() {
 
 function ServerSpacer() {
   return (
-    <div className="flex h-[3%] w-[90%]">
-      <div className="h-full w-[85%] border-x-2 border-white" />
+    <div className="flex h-[4%] w-[92%] shrink-0">
+      <div className="h-full w-[88%] border-x-2 border-foreground" />
     </div>
   );
 }
 
 function DevOpsVisual() {
   return (
-    <div className="relative mt-auto flex h-[120px] w-full shrink-0 items-center justify-center">
-      <div className="absolute top-6 right-[10%] h-[180px] w-[180px] -rotate-2 transition-all duration-300 group-hover:right-[15%] group-hover:bottom-0 group-hover:scale-105 group-hover:rotate-2">
-        <div className="relative flex h-full w-full flex-col items-center justify-center">
-          <div className="absolute -top-4 right-4 h-[45%]">
+    <div className="relative mt-6 flex h-[160px] w-full shrink-0 items-end justify-end pb-1 pr-1 sm:pr-3">
+      <div className="relative h-[148px] w-[148px] origin-bottom-right -rotate-2 transition-all duration-300 group-hover:scale-105 group-hover:rotate-2">
+        <div className="relative flex h-full w-full flex-col items-center justify-end pb-1">
+          <div className="absolute -top-2 right-2 z-10 h-[42%]">
             <svg
               viewBox="0 0 512 512"
               className="h-full w-full text-[#56a3fc]"
@@ -163,10 +163,11 @@ function DevOpsVisual() {
             </svg>
           </div>
 
-          <ServerUnit />
-          <ServerSpacer />
-          <ServerUnit />
-          <ServerSpacer />
+          <div className="flex h-[72%] w-full flex-col justify-end">
+            <ServerUnit />
+            <ServerSpacer />
+            <ServerUnit />
+          </div>
         </div>
       </div>
     </div>
@@ -217,8 +218,8 @@ export function Services({ services }: { services: ServiceItem[] }) {
                   className="h-full"
                   delayMs={(index + 1) * 80}
                 >
-                  <article className="card-surface card-glow group relative flex h-full min-h-[280px] flex-col overflow-hidden p-6 transition-all duration-300 hover:scale-[1.02] md:min-h-[300px] md:p-8">
-                    <div className="min-h-[7.5rem]">
+                  <article className="card-surface card-glow group relative flex h-full min-h-[300px] flex-col overflow-visible p-6 transition-all duration-300 hover:scale-[1.02] md:min-h-[320px] md:p-8">
+                    <div className="min-h-[7.5rem] shrink-0">
                       <h2 className="mb-4 text-2xl font-bold text-foreground xl:text-3xl">
                         {service.title}
                       </h2>

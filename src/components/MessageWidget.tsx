@@ -93,23 +93,26 @@ export function MessageWidget({ name }: MessageWidgetProps) {
       <button
         type="button"
         onClick={openChat}
-        className="fixed right-5 bottom-5 z-40 inline-flex items-center gap-2.5 rounded-full bg-white py-2 pr-4 pl-2 text-left shadow-[0_10px_40px_rgba(0,0,0,0.45)] transition hover:scale-[1.03]"
+        className="fixed right-5 bottom-5 z-40 inline-flex items-center gap-3 rounded-full border-[2.5px] border-black bg-white py-2.5 pr-5 pl-2.5 text-left shadow-[4px_4px_0_0_#000] transition hover:translate-x-px hover:translate-y-px hover:shadow-[3px_3px_0_0_#000] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
       >
         <span className="relative shrink-0">
           <Image
             src="/avatar.svg"
             alt=""
-            width={36}
-            height={36}
-            className="h-9 w-9 rounded-full"
+            width={44}
+            height={44}
+            className="h-11 w-11 rounded-full border-[2.5px] border-black object-cover shadow-[2px_2px_0_0_#000]"
           />
-          <span className="absolute right-0 bottom-0 h-2.5 w-2.5 rounded-full border-2 border-white bg-emerald-500" />
         </span>
-        <span className="min-w-0">
-          <span className="block whitespace-nowrap text-sm font-bold text-black">
+        <span className="min-w-0 pr-1">
+          <span className="block whitespace-nowrap text-[15px] font-bold text-black">
             Message {name}
           </span>
-          <span className="mt-0.5 block whitespace-nowrap text-[11px] font-medium text-zinc-500">
+          <span className="mt-0.5 flex items-center gap-1.5 whitespace-nowrap text-[13px] font-medium text-black">
+            <span
+              className="inline-block h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500"
+              aria-hidden
+            />
             Online
           </span>
         </span>

@@ -18,7 +18,7 @@ export function Footer({ name, github, linkedin, email }: FooterProps) {
             {name}
           </p>
           <p className="mt-3 text-sm text-muted">
-          Junior Full Stack Developer. <br /> Building ideas into reality, one line of code at a time.
+          Junior Fullstack Developer passionate about building modern, responsive, and user-friendly web applications. Always learning, always improving, and always coding.
           </p>
         </div>
 

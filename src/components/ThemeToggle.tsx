@@ -15,11 +15,12 @@ function subscribe(onStoreChange: () => void) {
 
 function getSnapshot() {
   const stored = window.localStorage.getItem("theme");
-  return stored ? stored === "dark" : true;
+  // Default to light when visiting for the first time
+  return stored ? stored === "dark" : false;
 }
 
 function getServerSnapshot() {
-  return true;
+  return false;
 }
 
 export function ThemeToggle() {
