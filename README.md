@@ -67,24 +67,45 @@ git push -u origin main
 
 (Skip `remote add` if `origin` already exists.)
 
-## Deploy on Cloudflare (Workers + OpenNext)
+## Deploy on Cloudflare Workers (OpenNext)
 
-This app is **not** a static export (it needs API routes + Prisma). Do **not** use framework preset **Next.js (Static HTML Export)** or output directory `out`.
+This app needs a **Worker** runtime (API routes + Prisma). It is **not** a static site.
 
-In Cloudflare Workers / Pages build settings:
+### Why your last deploy ignored Wrangler
+
+Cloudflare connected this repo as a **Pages** project. Pages only accepts Wrangler files that include `pages_build_output_dir`, so it skipped `wrangler.jsonc` and published empty/static assets.
+
+**Do not** add `pages_build_output_dir`. That would force a Pages/static deploy.
+
+### Fix in the Cloudflare dashboard
+
+1. Create a new project under **Workers & Pages → Create → Worker** (or **Workers Builds** with Git).
+2. Connect the same GitHub repo (`sopheakdevkh/sopheakkhoeun`).
+3. Disconnect or delete the old **Pages** project that used “Next.js (Static HTML Export)”.
 
 | Setting | Value |
 | --- | --- |
-| Framework preset | None (or Workers / OpenNext — **not** Static HTML Export) |
+| Product | **Workers** (not Pages) |
+| Framework preset | None / OpenNext — **not** “Static HTML Export” |
+| Root directory | `/` (repo root) |
 | Build command | `npx opennextjs-cloudflare build` |
 | Deploy command | `npx wrangler deploy` |
-| Build output directory | leave empty / ignore `out` |
+| Non-production deploy | `npx wrangler versions upload` |
+| Build output directory | *(leave empty — Workers does not use `/out`)* |
 
-Keep your env vars (`DATABASE_URL`, `DIRECT_URL`, `ADMIN_PASSWORD`, `ADMIN_SECRET`) in Cloudflare secrets.
+### Runtime + build secrets
 
-Local deploy:
+Add these in **Worker → Settings → Variables and Secrets** (runtime) **and** in **Build → Variables and secrets** (so `prisma generate` / build can read them):
+
+- `DATABASE_URL`
+- `DIRECT_URL`
+- `ADMIN_PASSWORD`
+- `ADMIN_SECRET`
+
+### Local deploy
 
 ```bash
+cp .dev.vars.example .dev.vars
 npm run deploy
 ```
 

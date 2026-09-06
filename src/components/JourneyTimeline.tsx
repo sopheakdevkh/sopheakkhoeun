@@ -20,8 +20,8 @@ export function JourneyTimeline({ items }: { items: JourneyItem[] }) {
 
   return (
     <section className="relative w-full py-10 text-foreground md:py-16">
-      <div className="mx-auto w-[95%] lg:w-[85%] xl:w-[80%]">
-        <div className="flex h-[70px] w-full">
+      <div className="mx-auto w-[95%] border-2 border-edge lg:w-[85%] xl:w-[80%]">
+        <div className="flex h-[70px] w-full border-b-2 border-edge">
           <div className="flex flex-grow items-center justify-center text-2xl font-bold uppercase xl:text-4xl">
             Journey
           </div>
