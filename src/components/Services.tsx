@@ -198,7 +198,7 @@ export function Services({ services }: { services: ServiceItem[] }) {
                 <h2 className="text-2xl font-bold text-foreground xl:text-3xl">
                   {full.title}
                 </h2>
-                <p className="text-xs text-muted xl:text-sm lg:pr-4">
+                <p className="text-sm tracking-wide text-muted xl:text-base lg:pr-4">
                   {full.description}
                 </p>
               </div>
@@ -223,7 +223,7 @@ export function Services({ services }: { services: ServiceItem[] }) {
                       <h2 className="mb-4 text-2xl font-bold text-foreground xl:text-3xl">
                         {service.title}
                       </h2>
-                      <p className="text-xs text-muted xl:text-sm">
+                      <p className="text-sm tracking-wide text-muted xl:text-base">
                         {service.description}
                       </p>
                     </div>

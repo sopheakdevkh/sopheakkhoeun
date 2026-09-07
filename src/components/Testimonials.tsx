@@ -174,7 +174,7 @@ function TestimonialCard({ item }: { item: TestimonialItem }) {
 
       <Stars rating={item.rating} />
 
-      <p className="text-sm leading-relaxed text-foreground/90 xl:text-base">
+      <p className="text-sm tracking-wide text-muted xl:text-base">
         ❝ {item.quote} ❞
       </p>
     </article>

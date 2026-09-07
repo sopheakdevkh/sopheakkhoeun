@@ -2,24 +2,19 @@ import type { SimpleIcon } from "simple-icons";
 import {
   siCss,
   siExpress,
-  siFigma,
   siGit,
+  siGithub,
   siHtml5,
   siJavascript,
+  siLaravel,
   siMongodb,
-  siNeon,
+  siMysql,
   siNextdotjs,
   siNodedotjs,
-  siPhp,
   siPostgresql,
-  siPrisma,
-  siPython,
   siReact,
-  siSocketdotio,
+  siStrapi,
   siTailwindcss,
-  siThreedotjs,
-  siTypescript,
-  siVercel,
 } from "simple-icons";
 
 type SkillIconProps = {
@@ -31,26 +26,21 @@ const iconsByName: Record<string, SimpleIcon> = {
   HTML: siHtml5,
   CSS: siCss,
   JavaScript: siJavascript,
-  TypeScript: siTypescript,
-  PHP: siPhp,
   React: siReact,
   "React.js": siReact,
-  "React Native": siReact,
   "Next.js": siNextdotjs,
   "Tailwind CSS": siTailwindcss,
   TailwindCss: siTailwindcss,
-  "Three.js": siThreedotjs,
   "Node.js": siNodedotjs,
   "Express.js": siExpress,
-  "Socket.io": siSocketdotio,
-  Prisma: siPrisma,
-  PostgreSQL: siPostgresql,
-  MongoDB: siMongodb,
-  Python: siPython,
-  Neon: siNeon,
+  Laravel: siLaravel,
+  MySQL: siMysql,
   Git: siGit,
-  Figma: siFigma,
-  Vercel: siVercel,
+  MongoDB: siMongodb,
+  PostgreSQL: siPostgresql,
+  GitHub: siGithub,
+  Github: siGithub,
+  Strapi: siStrapi,
 };
 
 const displayNames: Record<string, string> = {
@@ -59,14 +49,7 @@ const displayNames: Record<string, string> = {
 };
 
 /** Brand colors that are too dark for a black UI — force white. */
-const lightOnDark = new Set([
-  "Next.js",
-  "Vercel",
-  "Express.js",
-  "Prisma",
-  "Socket.io",
-  "Three.js",
-]);
+const lightOnDark = new Set(["Next.js", "Express.js", "GitHub", "Github"]);
 
 export function getSkillLabel(name: string) {
   return displayNames[name] ?? name;

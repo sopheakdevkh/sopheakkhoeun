@@ -24,7 +24,7 @@ export default async function Home() {
     }),
     prisma.skill.findMany({
       where: { published: true },
-      orderBy: [{ category: "asc" }, { order: "asc" }],
+      orderBy: [{ order: "asc" }, { name: "asc" }],
     }),
     prisma.testimonial.findMany({
       where: { published: true },

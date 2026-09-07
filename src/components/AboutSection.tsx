@@ -105,7 +105,7 @@ export function AboutSection({
               ) : null}
             </Reveal>
 
-            <div className="mt-8 space-y-5 text-sm leading-relaxed text-muted md:text-[15px] md:leading-7">
+            <div className="mt-8 space-y-5 text-sm tracking-wide text-muted xl:text-base">
               {paragraphs.map((paragraph, index) => (
                 <Reveal key={index} delayMs={index * 80}>
                   <p>{paragraph}</p>

@@ -10,7 +10,7 @@ export async function GET() {
     }),
     prisma.skill.findMany({
       where: { published: true },
-      orderBy: [{ category: "asc" }, { order: "asc" }],
+      orderBy: [{ order: "asc" }, { name: "asc" }],
     }),
     prisma.project.findMany({
       where: { published: true },

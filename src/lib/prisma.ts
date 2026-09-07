@@ -6,7 +6,7 @@ import ws from "ws";
 neonConfig.webSocketConstructor = ws;
 
 /** Bump when Prisma models change so HMR does not keep a stale client. */
-const PRISMA_REVISION = 6;
+const PRISMA_REVISION = 8;
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;

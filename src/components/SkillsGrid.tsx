@@ -3,6 +3,7 @@ import { SkillIcon, getSkillLabel } from "@/components/SkillIcon";
 type Skill = {
   id: string;
   name: string;
+  order?: number;
 };
 
 function LocalhostMock() {
@@ -39,6 +40,10 @@ function LocalhostMock() {
 export function SkillsGrid({ skills }: { skills: Skill[] }) {
   if (!skills.length) return null;
 
+  const orderedSkills = [...skills].sort(
+    (a, b) => (a.order ?? 0) - (b.order ?? 0),
+  );
+
   return (
     <section
       id="skills"
@@ -68,7 +73,7 @@ export function SkillsGrid({ skills }: { skills: Skill[] }) {
           </div>
 
           <div className="grid grid-cols-2 border-t border-edge text-xl font-bold md:border-0 lg:grid-cols-3 md:text-2xl xl:text-3xl">
-            {skills.map((skill) => (
+            {orderedSkills.map((skill) => (
               <div
                 key={skill.id}
                 className="flex h-[90px] items-center justify-center gap-2 border-r border-b border-edge transition-all hover:bg-soft-fill hover:text-2xl md:h-[100px] xl:h-[130px] xl:hover:text-4xl"

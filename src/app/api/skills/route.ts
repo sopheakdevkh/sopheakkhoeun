@@ -5,7 +5,7 @@ import { isAdminAuthenticated } from "@/lib/admin-auth";
 export async function GET() {
   const skills = await prisma.skill.findMany({
     where: { published: true },
-    orderBy: [{ category: "asc" }, { order: "asc" }],
+    orderBy: [{ order: "asc" }, { name: "asc" }],
   });
   return NextResponse.json(skills);
 }

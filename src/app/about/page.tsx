@@ -1,4 +1,5 @@
 import { AboutSection } from "@/components/AboutSection";
+import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { prisma } from "@/lib/prisma";
@@ -32,6 +33,11 @@ export default async function AboutPage() {
         github={profile?.github}
         linkedin={profile?.linkedin}
         resumeUrl={profile?.resumeUrl}
+      />
+      <ContactSection
+        email={profile?.email}
+        github={profile?.github}
+        linkedin={profile?.linkedin}
       />
       <Footer
         name={name}

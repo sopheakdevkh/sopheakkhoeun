@@ -93,7 +93,8 @@ export function MessageWidget({ name }: MessageWidgetProps) {
       <button
         type="button"
         onClick={openChat}
-        className="fixed right-5 bottom-5 z-40 inline-flex items-center gap-3 rounded-full border-[2.5px] border-black bg-white py-2.5 pr-5 pl-2.5 text-left shadow-[4px_4px_0_0_#000] transition hover:translate-x-px hover:translate-y-px hover:shadow-[3px_3px_0_0_#000] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+        aria-label={`Message ${name}`}
+        className="fixed right-3 bottom-3 z-40 inline-flex items-center gap-2 rounded-full border-2 border-black bg-white p-1.5 text-left shadow-[3px_3px_0_0_#000] transition hover:translate-x-px hover:translate-y-px hover:shadow-[2px_2px_0_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:right-5 sm:bottom-5 sm:gap-3 sm:border-[2.5px] sm:py-2.5 sm:pr-5 sm:pl-2.5 sm:shadow-[4px_4px_0_0_#000] sm:hover:shadow-[3px_3px_0_0_#000] sm:active:translate-x-[3px] sm:active:translate-y-[3px]"
       >
         <span className="relative shrink-0">
           <Image
@@ -101,10 +102,10 @@ export function MessageWidget({ name }: MessageWidgetProps) {
             alt=""
             width={44}
             height={44}
-            className="h-11 w-11 rounded-full border-[2.5px] border-black object-cover shadow-[2px_2px_0_0_#000]"
+            className="h-8 w-8 rounded-full border-2 border-black object-cover shadow-[1.5px_1.5px_0_0_#000] sm:h-11 sm:w-11 sm:border-[2.5px] sm:shadow-[2px_2px_0_0_#000]"
           />
         </span>
-        <span className="min-w-0 pr-1">
+        <span className="hidden min-w-0 pr-1 sm:block">
           <span className="block whitespace-nowrap text-[15px] font-bold text-black">
             Message {name}
           </span>

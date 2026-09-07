@@ -29,7 +29,7 @@ export function JourneyTimeline({ items }: { items: JourneyItem[] }) {
 
 
         <div className="px-4 py-10 sm:px-8 md:px-12 md:py-16">
-          <p className="mx-auto max-w-2xl text-center text-sm text-muted md:text-base">
+          <p className="mx-auto max-w-2xl text-center text-sm tracking-wide text-muted xl:text-base">
             A line through the years from first commits to shipping production
             apps.
           </p>
@@ -83,7 +83,7 @@ export function JourneyTimeline({ items }: { items: JourneyItem[] }) {
                           </p>
                         ) : null}
 
-                        <p className="mt-3 max-w-md text-sm leading-relaxed text-muted md:text-[15px] md:leading-7">
+                        <p className="mt-3 max-w-md text-sm tracking-wide text-muted xl:text-base">
                           {item.description}
                         </p>
                       </div>

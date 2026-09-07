@@ -17,7 +17,7 @@ export function Footer({ name, github, linkedin, email }: FooterProps) {
           <p className="font-display text-lg font-bold uppercase tracking-[0.14em]">
             {name}
           </p>
-          <p className="mt-3 text-sm text-muted">
+          <p className="mt-3 text-sm tracking-wide text-muted xl:text-base">
           Junior Fullstack Developer passionate about building modern, responsive, and user-friendly web applications. Always learning, always improving, and always coding.
           </p>
         </div>
@@ -103,7 +103,7 @@ export function Footer({ name, github, linkedin, email }: FooterProps) {
           <p className="text-sm font-semibold uppercase tracking-wider text-muted">
             Stack
           </p>
-          <p className="mt-3 text-sm text-muted">NEVER STOP LEARNING & CODING . កុំឈប់រៀនសូត្រ និងសរសេរកូដឱ្យសោះ។</p>
+          <p className="mt-3 text-sm text-muted">NEVER STOP LEARNING & CODING</p>
         </div>
       </div>
 

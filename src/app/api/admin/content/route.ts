@@ -11,7 +11,7 @@ export async function GET() {
     await Promise.all([
       prisma.profile.findFirst(),
       prisma.service.findMany({ orderBy: { order: "asc" } }),
-      prisma.skill.findMany({ orderBy: [{ category: "asc" }, { order: "asc" }] }),
+      prisma.skill.findMany({ orderBy: [{ order: "asc" }, { name: "asc" }] }),
       prisma.project.findMany({
         orderBy: [{ featured: "desc" }, { order: "asc" }],
       }),

@@ -37,7 +37,7 @@ export function Hero({ name, title, bio, github, linkedin, email }: HeroProps) {
         {title}
       </h2>
 
-      <p className="mt-2 w-[80%] text-xs text-muted md:text-sm lg:w-[50%] xl:text-base">
+      <p className="mt-2 w-[80%] text-sm tracking-wide text-muted lg:w-[50%] xl:text-base">
         {bio}
       </p>
 

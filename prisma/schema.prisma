@@ -28,6 +28,7 @@ model Skill {
   id        String   @id @default(cuid())
   name      String
   category  String
+  imageUrl  String?
   level     Int      @default(3)
   order     Int      @default(0)
   published Boolean  @default(true)

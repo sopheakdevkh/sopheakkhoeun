@@ -111,7 +111,7 @@ export function ProjectsGrid({ projects }: { projects: Project[] }) {
                       className="block text-inherit no-underline"
                     >
                       <div className="font-bold text-foreground">{project.title}</div>
-                      <div className="text-xs text-muted xl:text-[13px]">
+                      <div className="text-sm tracking-wide text-muted xl:text-base">
                         {project.summary}
                       </div>
                       <div className="relative flex h-[120px] justify-center xl:h-[180px]">
