@@ -44,3 +44,7 @@ next-env.d.ts
 
 # prisma
 /src/generated/prisma
+
+# user uploads (keep folder structure)
+/public/uploads/**/*
+!/public/uploads/**/.gitkeep

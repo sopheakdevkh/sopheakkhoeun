@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { AdminFormField } from "@/components/admin/AdminFormField";
+import { ImageUploadField } from "@/components/admin/ImageUploadField";
 import {
   FormEvent,
   ReactNode,
@@ -482,17 +484,16 @@ export default function AdminDashboardPage() {
                   <p className="sm:col-span-2 mt-1 text-xs font-bold tracking-wider text-zinc-500 uppercase">
                     About page
                   </p>
-                  <label className={`${labelClass} sm:col-span-2`}>
-                    <span className={labelSpanClass}>
-                      Photo URL (PNG / JPG / WEBP / SVG)
-                    </span>
-                    <input
-                      name="photoUrl"
-                      placeholder="https://…/photo.png or /me.png"
-                      defaultValue={String(profile.photoUrl ?? "")}
-                      className={inputClass}
-                    />
-                  </label>
+                  <ImageUploadField
+                    name="photoUrl"
+                    label="About photo (upload or paste URL)"
+                    folder="about"
+                    defaultValue={String(profile.photoUrl ?? "")}
+                    inputClass={inputClass}
+                    labelClass={labelClass}
+                    labelSpanClass={labelSpanClass}
+                    className="sm:col-span-2"
+                  />
                   <label className={`${labelClass} sm:col-span-2`}>
                     <span className={labelSpanClass}>
                       About text (blank line = new paragraph)
@@ -587,7 +588,12 @@ export default function AdminDashboardPage() {
                       label: "Description",
                       type: "textarea",
                     },
-                    { name: "imageUrl", label: "Image URL" },
+                    {
+                      name: "imageUrl",
+                      label: "Project image (upload or paste URL)",
+                      type: "image",
+                      uploadFolder: "projects",
+                    },
                     { name: "demoUrl", label: "Demo URL" },
                     { name: "githubUrl", label: "GitHub URL" },
                     { name: "tags", label: "Tags (comma separated)" },
@@ -854,7 +860,8 @@ export default function AdminDashboardPage() {
 type Field = {
   name: string;
   label: string;
-  type?: "text" | "textarea" | "number";
+  type?: "text" | "textarea" | "number" | "image";
+  uploadFolder?: "projects" | "about";
 };
 
 function ConfirmModal({
@@ -1173,23 +1180,13 @@ function SectionManager({
       >
         <form className="grid gap-4 sm:grid-cols-2" onSubmit={handleCreate}>
           {fields.map((field) => (
-            <label
+            <AdminFormField
               key={field.name}
-              className={`${labelClass} ${
-                field.type === "textarea" ? "sm:col-span-2" : ""
-              }`}
-            >
-              <span className={labelSpanClass}>{field.label}</span>
-              {field.type === "textarea" ? (
-                <textarea name={field.name} rows={4} className={inputClass} />
-              ) : (
-                <input
-                  name={field.name}
-                  type={field.type ?? "text"}
-                  className={inputClass}
-                />
-              )}
-            </label>
+              field={field}
+              inputClass={inputClass}
+              labelClass={labelClass}
+              labelSpanClass={labelSpanClass}
+            />
           ))}
           {extraCreateFields ? (
             <div className="sm:col-span-2">{extraCreateFields}</div>
@@ -1225,32 +1222,17 @@ function SectionManager({
               const value =
                 field.name === "tags" && Array.isArray(editing.tags)
                   ? editing.tags.join(", ")
-                  : editing[field.name];
+                  : String(editing[field.name] ?? "");
 
               return (
-                <label
+                <AdminFormField
                   key={field.name}
-                  className={`${labelClass} ${
-                    field.type === "textarea" ? "sm:col-span-2" : ""
-                  }`}
-                >
-                  <span className={labelSpanClass}>{field.label}</span>
-                  {field.type === "textarea" ? (
-                    <textarea
-                      name={field.name}
-                      rows={4}
-                      defaultValue={String(value ?? "")}
-                      className={inputClass}
-                    />
-                  ) : (
-                    <input
-                      name={field.name}
-                      type={field.type ?? "text"}
-                      defaultValue={String(value ?? "")}
-                      className={inputClass}
-                    />
-                  )}
-                </label>
+                  field={field}
+                  value={value}
+                  inputClass={inputClass}
+                  labelClass={labelClass}
+                  labelSpanClass={labelSpanClass}
+                />
               );
             })}
             <div className="flex flex-wrap gap-2 border-t border-zinc-200 pt-4 sm:col-span-2">
