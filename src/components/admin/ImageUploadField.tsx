@@ -1,6 +1,7 @@
 "use client";
 
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
+
 import type { UploadFolder } from "@/lib/save-upload";
 
 type ImageUploadFieldProps = {
@@ -28,12 +29,9 @@ export function ImageUploadField({
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    setUrl(defaultValue);
-  }, [defaultValue]);
-
   async function onFileChange(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
+
     if (!file) return;
 
     setUploading(true);
@@ -48,6 +46,7 @@ export function ImageUploadField({
         method: "POST",
         body,
       });
+
       const data = await response.json();
 
       if (!response.ok) {
@@ -67,6 +66,7 @@ export function ImageUploadField({
     <div className={`grid gap-2 ${className}`}>
       <label className={labelClass}>
         <span className={labelSpanClass}>{label}</span>
+
         <input
           name={name}
           value={url}
@@ -79,6 +79,7 @@ export function ImageUploadField({
       <div className="flex flex-wrap items-center gap-3">
         <label className="cursor-pointer rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 transition hover:bg-zinc-50">
           {uploading ? "Uploading…" : "Upload image"}
+
           <input
             type="file"
             accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
@@ -87,6 +88,7 @@ export function ImageUploadField({
             onChange={onFileChange}
           />
         </label>
+
         {url ? (
           <button
             type="button"
@@ -111,3 +113,4 @@ export function ImageUploadField({
     </div>
   );
 }
+
